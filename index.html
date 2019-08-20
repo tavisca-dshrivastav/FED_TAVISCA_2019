@@ -11,6 +11,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            overflow: hidden;
         }
         
         body {
@@ -74,6 +75,7 @@
             cursor: pointer;
             border: 2px solid gray;
             opacity: 0.5;
+            background: lightblue;
         }
         
         li a {
@@ -86,11 +88,7 @@
             text-align: center;
         }
         
-        .main-body {
-            position: relative;
-            top: 30%;
-            left: 30%;
-        }
+        .main-body {}
         
         input {
             height: 40px;
@@ -107,6 +105,61 @@
         
         #dept-content {
             display: none;
+        }
+        
+        table,
+        td,
+        th {
+            border: 2px solid black;
+            border-collapse: collapse;
+            padding: 3px;
+        }
+        
+        th {
+            font-weight: bold;
+        }
+        
+        .todo-body {
+            display: flex;
+            flex-direction: column;
+            margin: 40px;
+        }
+        
+        .form {
+            /* position: relative; */
+            margin: 12px;
+        }
+        
+        .table {
+            margin: 12px;
+            position: relative;
+        }
+        
+        a {
+            margin: 2px;
+        }
+        
+        .autopop {
+            width: 300px;
+            display: none;
+            /* position: relative; */
+        }
+        
+        .autopop {
+            background: white;
+            position: absolute;
+            z-index: 1;
+        }
+        
+        .autopop li {
+            /* position: relative; */
+            /* left: 8px; */
+            text-align: center;
+            list-style-type: none;
+        }
+        
+        .search-box {
+            z-index: 1;
         }
     </style>
 </head>
@@ -125,11 +178,37 @@
         </aside>
         <section>
             <div class="main-body" id="todo-content">
-                <form action="">
-                    <input type="text" name="name" id="">
-                    <input type="button" value="search">
-                    <input type="button" value="add">
-                </form>
+                <div class="todo-body">
+                    <div class="search-box">
+                        <form class="form" action="">
+                            <input type="text" onblur="return hidePopup()" onfocus="return showPopup()" name="name" id="">
+                            <input type="button" value="search">
+                            <input type="button" value="add">
+                            <div class="autopop" id="autopop">
+                                <ul class="popupitem" id="popupitem">
+
+
+                                </ul>
+
+                            </div>
+                        </form>
+
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Index</th>
+                                <th>Title</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-body" id="table-body">
+
+                        </tbody>
+                    </table>
+                </div>
+
+
             </div>
             <div class="main-body" id="user-content">user</div>
             <div class="main-body" id="dept-content">data</div>
@@ -148,7 +227,16 @@
             }
             document.getElementById(tab + '-content').style.display = 'block';
         }
+
+        function showPopup() {
+            document.getElementById('autopop').style.display = 'block';
+        }
+
+        function hidePopup() {
+            document.getElementById('autopop').style.display = 'none';
+        }
     </script>
+    <script src="json.js"></script>
 </body>
 
 </html>

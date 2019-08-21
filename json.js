@@ -1203,17 +1203,58 @@ var jsonObject = [{
 
 var t = JSON.stringify(jsonObject);
 var ans = JSON.parse(t);
-console.log(ans[0]);
-for (let i = 0; i < 10; i++) {
-    let body = '<tr>' +
-        '<td>' + ans[i].id + '</td>' +
-        '<td>' + ans[i].title + '</td>' +
-        '<td id="todo-' + ans[i].id + '>' + '<a href="#">edit</a>' + '<a href="#">delete</a></td>'
-    '</tr>';
-    document.getElementById('table-body').innerHTML += body;
+console.log(ans);
+var l = ans.length;
+window.addEventListener('load', renderElement);
+
+
+function renderElement() {
+    document.getElementById('table-body').innerHTML = '';
+    for (let i = 0; i < ans.length && i < 10; i++) {
+        let body = '<tr id="todo-' + ans[i].id + '">' +
+            '<td>' + (i + 1) + '</td>' +
+            '<td  id="ele-' + ans[i].id + '">' + ans[i].title + '</td>' +
+            '<td id="util-' + ans[i].id + '">' +
+            '<a class="item-utility" id="edit-' + ans[i].id + '" onclick="return edit(' + ans[i].id + ');" href="#">edit</a>' +
+            '<a class="item-utility" id="upd-' + ans[i].id + '" onclick="return deleteItem(' + i + ');" href="#">delete</a>' +
+            '</td>' +
+            '</tr>';
+        document.getElementById('table-body').innerHTML += body;
+    }
 }
+
+
 
 for (let i = 0; i < 10; i++) {
     let body = '<li>' + ans[i].title + '</li>';
     document.getElementById('popupitem').innerHTML += body;
+}
+
+function deleteItem(id) {
+    ans.splice(id, 1);
+
+    renderElement();
+}
+
+function edit(id) {
+    var value = document.getElementById('ele-' + id).innerHTML;
+    document.getElementById('ele-' + id).innerHTML = '<input type="text" name="" value="' + value + '" id="upele-' + id + '">';
+    document.getElementById('util-' + id).innerHTML = '<a class="item-utility" id="update-' + id + '" onclick="update(' + id + ');" href="#">update</a>';
+}
+
+function add() {
+    var value = document.getElementById('search-value').value;
+    ans.unshift({ userId: 1, id: l++, title: value, completed: false });
+    renderElement();
+
+}
+
+function update(id) {
+    console.log(id);
+    var value = document.getElementById('upele-' + id).value;
+    // deleteItem(id);
+    ans[id].title = value;
+    document.getElementById('ele-' + id).innerHTML = ans[id].title;
+    // return;
+    renderElement();
 }

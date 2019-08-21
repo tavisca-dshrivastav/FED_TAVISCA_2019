@@ -25,10 +25,10 @@
             <div class="main-body" id="todo-content">
                 <div class="todo-body">
                     <div class="search-box">
-                        <form class="form" action="">
-                            <input type="text" onblur="return hidePopup();" onfocus="return showPopup();" name="name" id="">
+                        <form class="form" action="" autocomplete="false">
+                            <input type="text" onblur="return hidePopup();" onkeypress="return showSuggestion();" onfocus="return showPopup();" name="name" id="search-value">
                             <input type="button" value="search">
-                            <input type="button" value="add">
+                            <input type="button" onclick="return add();" value="add">
                             <div class="autopop" id="autopop">
                                 <ul class="popupitem" id="popupitem">
 

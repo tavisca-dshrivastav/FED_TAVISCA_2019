@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>This is my todo list</h1>
+    </header>
+    <div class="container">
+        <aside>
+            <ul class="list-item">
+                <li><a data-tab="todo" href="#" onclick="return changeTab(this);">TO DO</a></li>
+                <li><a data-tab="user" href="#" onclick="return changeTab(this);">USER</a></li>
+                <li><a data-tab="dept" href="#" onclick="return changeTab(this);">DEPARTMENT</a></li>
+            </ul>
+        </aside>
+        <section>
+            <div class="main-body" id="todo-content">
+                <div class="todo-body">
+                    <div class="search-box">
+                        <form class="form" action="" autocomplete="false">
+                            <input type="text" onblur="return hidePopup();" onkeypress="return showSuggestion(this.value);" onkeyup="return showSuggestion(this.value);" onkeydown="return showSuggestion(this.value);" name="name" id="search-value">
+                            <input type="button" value="search">
+                            <input type="button" onclick="return add();" value="add">
+                            <div class="autopop" id="autopop">
+                                <ul class="popupitem" id="popupitem">
+
+
+                                </ul>
+
+                            </div>
+                        </form>
+
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Index</th>
+                                <th>Title</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-body" id="table-body">
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+            <div class="main-body" id="user-content">user</div>
+            <div class="main-body" id="dept-content">data</div>
+
+        </section>
+    </div>
+    <footer>
+        <h6>Copyright @ Deepak Shrivastav</h6>
+    </footer>
+    <script src="script.js"></script>
+    <script src="json.js"></script>
+</body>
+
+</html>

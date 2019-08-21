@@ -1225,10 +1225,7 @@ function renderElement() {
 
 
 
-for (let i = 0; i < 10; i++) {
-    let body = '<li>' + ans[i].title + '</li>';
-    document.getElementById('popupitem').innerHTML += body;
-}
+
 
 function deleteItem(id) {
     ans.splice(id, 1);
@@ -1257,4 +1254,23 @@ function update(id) {
     document.getElementById('ele-' + id).innerHTML = ans[id].title;
     // return;
     renderElement();
+}
+
+function showPopup(suggestion) {
+    document.getElementById('popupitem').innerHTML = '';
+    for (let i = 0; i < 10 && i < suggestion.length; i++) {
+        let body = '<li>' + suggestion[i].title + '</li>';
+        document.getElementById('popupitem').innerHTML += body;
+    }
+    document.getElementById('autopop').style.display = 'block';
+}
+
+function showSuggestion(element) {
+    let suggestions = ans.filter((todo) => {
+        // console.log(todo["title"]);
+        return todo.title.includes(element);
+    });
+    console.log(suggestions);
+    showPopup(suggestions);
+    // console.log(element);
 }

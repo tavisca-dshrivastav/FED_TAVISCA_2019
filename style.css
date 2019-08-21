@@ -133,6 +133,7 @@ a {
 .autopop {
     width: 300px;
     display: none;
+    z-index: 100000;
     /* position: relative; */
 }
 

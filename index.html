@@ -26,7 +26,7 @@
                 <div class="todo-body">
                     <div class="search-box">
                         <form class="form" action="" autocomplete="false">
-                            <input type="text" onblur="return hidePopup();" onkeypress="return showSuggestion();" onfocus="return showPopup();" name="name" id="search-value">
+                            <input type="text" onblur="return hidePopup();" onkeypress="return showSuggestion(this.value);" onkeyup="return showSuggestion(this.value);" onkeydown="return showSuggestion(this.value);" name="name" id="search-value">
                             <input type="button" value="search">
                             <input type="button" onclick="return add();" value="add">
                             <div class="autopop" id="autopop">
